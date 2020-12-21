@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+        integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+        crossorigin="anonymous" />
+  <title>TALXIS - Connectors Sandbox</title>
+</head>
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#LiquidJS">LiquidJS</a></li>
+            <li><a href="#WordFiller">Word Filler</a></li>
+            <li><a href="#Word2PDF">Word to PDF</a></li>
+        </ul>
+        <div id="LiquidJS">
+            <p>
+                <h3>Data</h3>
+                <textarea id="liquidjs-data" name="w3review" rows="4" cols="50">{
+    "name": "alice"
+}</textarea>
+                <h3>Template</h3>
+                <textarea id="liquidjs-template" name="w3review" rows="4" cols="50">{{name | capitalize}}</textarea>
+                <p>
+                    <button onclick="LiquidJsProcess();">Process</button>
+                </p>
+                <h3>Result</h3>
+                <pre id="liquidjs-result"></pre>
+            </p>
+        </div>
+        <div id="WordFiller">
+            <p>
+                <h3>API key</h3>
+                <input type="text" id="wordfiller-api">
+                <h3>Source File</h3>
+                <input type="file" id="wordfiller-file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                <h3>Data</h3>
+                <textarea id="wordfiller-data" name="w3review" rows="4" cols="50">{
+    "name": "alice"
+}</textarea>
+                <p>
+                    <button onclick="WordFillerProcess();">Fill</button>
+                </p>
+            </p>
+        </div>
+        <div id="Word2PDF">
+            <p>
+                <h3>API key</h3>
+                <input type="text" id="word2pdf-api">
+                <h3>Source File</h3>
+                <input type="file" id="word2pdf-file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                <p>
+                    <button onclick="Word2PdfProcess();">Convert</button>
+                </p>
+            </p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/liquidjs@9.16.1/dist/liquid.browser.min.js"
+        integrity="sha256-OGhrI8eXWKkrsWFKdHIFgiQPzsPQ4I/wzY+pmjOE4b4=" crossorigin="anonymous"></script>
+    <script src="/app.js"></script>
+</body>
+</html>
