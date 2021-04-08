@@ -1,57 +1,80 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
         integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
         crossorigin="anonymous" />
-  <title>TALXIS - Connectors Sandbox</title>
+    <title>TALXIS - Connectors Sandbox</title>
 </head>
+
 <body>
     <div id="tabs">
         <ul>
             <li><a href="#LiquidJS">LiquidJS</a></li>
             <li><a href="#WordFiller">Word Filler</a></li>
             <li><a href="#Word2PDF">Word to PDF</a></li>
+            <li><a href="#SolutionParser">Solution Parser</a></li>
         </ul>
         <div id="LiquidJS">
             <p>
-                <h3>Data</h3>
-                <textarea id="liquidjs-data" name="w3review" rows="4" cols="50">{
+            <h3>Data</h3>
+            <textarea id="liquidjs-data" name="w3review" rows="4" cols="50">{
     "name": "alice"
 }</textarea>
-                <h3>Template</h3>
-                <textarea id="liquidjs-template" name="w3review" rows="4" cols="50">{{name | capitalize}}</textarea>
-                <p>
-                    <button onclick="LiquidJsProcess();">Process</button>
-                </p>
-                <h3>Result</h3>
-                <pre id="liquidjs-result"></pre>
+            <h3>Template</h3>
+            <textarea id="liquidjs-template" name="w3review" rows="4" cols="50">{{name | capitalize}}</textarea>
+            <p>
+                <button onclick="LiquidJsProcess();">Process</button>
+            </p>
+            <h3>Result</h3>
+            <pre id="liquidjs-result"></pre>
             </p>
         </div>
         <div id="WordFiller">
             <p>
-                <h3>API key</h3>
-                <input type="text" id="wordfiller-api">
-                <h3>Source File</h3>
-                <input type="file" id="wordfiller-file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                <h3>Data</h3>
-                <textarea id="wordfiller-data" name="w3review" rows="4" cols="50">{
+            <h3>API key</h3>
+            <input type="text" id="wordfiller-api">
+            <h3>Source File</h3>
+            <input type="file" id="wordfiller-file"
+                accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            <h3>Data</h3>
+            <textarea id="wordfiller-data" name="w3review" rows="4" cols="50">{
     "name": "alice"
 }</textarea>
-                <p>
-                    <button onclick="WordFillerProcess();">Fill</button>
-                </p>
+            <p>
+                <button onclick="WordFillerProcess();">Fill</button>
+            </p>
             </p>
         </div>
         <div id="Word2PDF">
             <p>
-                <h3>API key</h3>
-                <input type="text" id="word2pdf-api">
-                <h3>Source File</h3>
-                <input type="file" id="word2pdf-file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                <p>
-                    <button onclick="Word2PdfProcess();">Convert</button>
-                </p>
+            <h3>API key</h3>
+            <input type="text" id="word2pdf-api">
+            <h3>Source File</h3>
+            <input type="file" id="word2pdf-file"
+                accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+            <p>
+                <button onclick="Word2PdfProcess();">Convert</button>
+            </p>
+            </p>
+        </div>
+        <div id="SolutionParser">
+            <p>
+            <h3>Source Files</h3>
+            <input id="solutionparser-file" type="file" accept=".zip,.rar,.7zip" multiple></br>
+            <h3>Choose output:</h3>
+            <select name="solutionparser-option" id="solutionparser-option">
+                <option value="dbml">DBML</option>
+                <option value="sql">SQL</option>
+                <option value="edmx">EDMX</option>
+                <option value="ribbon">Ribbon</option>
+            </select></br>
+            <p>
+                <button onclick="ParseSolution();">Parse</button>
+            </p>
+            <h3>Result</h3>
+            <textarea id="solutionparser-result" rows="30" cols="150"></textarea>
             </p>
         </div>
     </div>
@@ -65,4 +88,5 @@
         integrity="sha256-OGhrI8eXWKkrsWFKdHIFgiQPzsPQ4I/wzY+pmjOE4b4=" crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
+
 </html>

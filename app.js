@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     $("#tabs").tabs();
 });
 
@@ -43,7 +43,7 @@ async function WordFillerProcess() {
                 "$properties": JSON.parse(data)
             })
         });
-        if(!result.ok) {
+        if (!result.ok) {
             alert("Something went wrong with processing the file!");
             return;
         } else {
@@ -80,6 +80,31 @@ async function Word2PdfProcess() {
     reader.readAsDataURL(file);
 }
 
+async function ParseSolution() {
+
+    var fileInput = document.getElementById("solutionparser-file");
+
+    fileList = [];
+    for (let i = 0; i < fileInput.files.length; i++) {
+        fileList.push((await toBase64(fileInput.files[i])).split(',')[1]);
+    }
+
+    var result = await fetch("https://pct20018-metadata.azurewebsites.net/api/parseSolution/" + document.getElementById("solutionparser-option").value, {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(fileList)
+    });
+
+    if (!result.ok) {
+        alert("Something went wrong with parsing the solutions!");
+        return;
+    } else {
+        var responseFile = await result.text();
+        document.getElementById("solutionparser-result").innerHTML = responseFile;
+    }
+
+}
+
 function downloadBase64File(contentType, base64Data, fileName) {
     const linkSource = `data:${contentType};base64,${base64Data}`;
     const downloadLink = document.createElement("a");
@@ -87,3 +112,10 @@ function downloadBase64File(contentType, base64Data, fileName) {
     downloadLink.download = fileName;
     downloadLink.click();
 }
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
