@@ -5,10 +5,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
         integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
         crossorigin="anonymous" />
-        <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/editor/editor.main.min.css">
+    <link rel="stylesheet" data-name="vs/editor/editor.main"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/editor/editor.main.min.css">
 
     <title>TALXIS - Connectors Sandbox</title>
 </head>
+
+<style>
+    .monaco-editor .editor-widget {
+        display: none !important;
+        visibility: hidden !important;
+    }
+</style>
 
 <body>
     <div id="tabs">
@@ -77,7 +85,7 @@
             </p>
             <h3>Result</h3>
             <div id="solutionparser-result" style="height:400px;border:1px solid black;"></div>
-            
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
