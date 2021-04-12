@@ -5,8 +5,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
         integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
         crossorigin="anonymous" />
+    <link rel="stylesheet" data-name="vs/editor/editor.main"
+        href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/editor/editor.main.min.css">
+
     <title>TALXIS - Connectors Sandbox</title>
 </head>
+
+<style>
+    .monaco-editor .editor-widget {
+        display: none !important;
+        visibility: hidden !important;
+    }
+</style>
 
 <body>
     <div id="tabs">
@@ -74,8 +84,8 @@
                 <button onclick="ParseSolution();">Parse</button>
             </p>
             <h3>Result</h3>
-            <textarea id="solutionparser-result" rows="30" cols="150"></textarea>
-            </p>
+            <div id="solutionparser-result" style="height:400px;border:1px solid black;"></div>
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
@@ -86,6 +96,9 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/liquidjs@9.16.1/dist/liquid.browser.min.js"
         integrity="sha256-OGhrI8eXWKkrsWFKdHIFgiQPzsPQ4I/wzY+pmjOE4b4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.23.0/min/vs/loader.min.js"
+        integrity="sha512-+8+MX2hyUZxaUfMJT0ew+rPsrTGiTmCg8oksa6uVE/ZlR/g3SJtyozqcqDGkw/W785xYAvcx1LxXPP+ywD0SNw=="
+        crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
 
