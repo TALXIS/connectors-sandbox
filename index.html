@@ -70,6 +70,11 @@
             </p>
         </div>
         <div id="SolutionParser">
+            <select name="solutionparser-target" id="solutionparser-target" onchange="parserOnchange()">
+                <option value="prod">https://pct20018-metadata.azurewebsites.net</option>
+                <option value="local">localhost</option>
+            </select> <div id="solutionparser-port" style="display: none;">Port:<input type="text" id="solutionparser-port-value" maxlength="4" size="1" value="7071"></div>
+            </br>
             <p>
             <h3>Source Files</h3>
             <input id="solutionparser-file" type="file" accept=".zip,.rar,.7zip" multiple></br>
