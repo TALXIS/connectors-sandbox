@@ -80,16 +80,32 @@ async function Word2PdfProcess() {
     reader.readAsDataURL(file);
 }
 
+ function parserOnchange() {
+     if(document.getElementById("solutionparser-target").value === "local") {
+         document.getElementById("solutionparser-port").style.display = 'inline-block'
+     } else {
+         document.getElementById("solutionparser-port").style.display = 'none'
+     }
+ }
+
 async function ParseSolution() {
 
     var fileInput = document.getElementById("solutionparser-file");
+    var targeturl;
 
     fileList = [];
     for (let i = 0; i < fileInput.files.length; i++) {
         fileList.push((await toBase64(fileInput.files[i])).split(',')[1]);
     }
 
-    var result = await fetch("https://pct20018-metadata.azurewebsites.net/api/parseSolution/" + document.getElementById("solutionparser-option").value, {
+    if(document.getElementById("solutionparser-target").value == "prod") {
+        targeturl = "https://pct20018-metadata.azurewebsites.net/api/parseSolution/";
+    } else {
+        targeturl = "http://localhost:" + document.getElementById("solutionparser-port-value").value + "/api/parseSolution/";
+    }
+
+    debugger;
+    var result = await fetch(targeturl + document.getElementById("solutionparser-option").value, {
         method: 'POST',
         mode: 'cors',
         body: JSON.stringify(fileList)
