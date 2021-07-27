@@ -31,11 +31,18 @@ async function WordFillerProcess() {
     let data = $("#wordfiller-data").val();
     let file = $('#wordfiller-file').prop('files')[0];
 
+    let targeturl;
+    if(document.getElementById("wordfiller-target").value == "prod") {
+        targeturl = "https://word.connectors.talxis.com/api/FillWordTemplate";
+    } else {
+        targeturl = "http://localhost:" + document.getElementById("wordfiller-port-value").value + "/api/FillWordTemplate";
+    }
+
     const reader = new FileReader();
     reader.addEventListener("load", async function () {
         var fileBase64 = reader.result;
         var filePost = fileBase64.split(',')[1];
-        var result = await fetch(`https://word.connectors.talxis.com/api/FillWordTemplate?code=${apiKey}`, {
+        var result = await fetch(`${targeturl}?code=${apiKey}`, {
             method: 'POST',
             mode: 'cors',
             body: JSON.stringify({
@@ -58,11 +65,18 @@ async function Word2PdfProcess() {
     let apiKey = $("#word2pdf-api").val();
     let file = $('#word2pdf-file').prop('files')[0];
 
+    let targeturl;
+    if(document.getElementById("wordtopdf-target").value == "prod") {
+        targeturl = "https://word.connectors.talxis.com/api/WordToPDF";
+    } else {
+        targeturl = "http://localhost:" + document.getElementById("wordtopdf-port-value").value + "/api/WordToPDF";
+    }
+
     const reader = new FileReader();
     reader.addEventListener("load", async function () {
         var fileBase64 = reader.result;
         var filePost = fileBase64.split(',')[1];
-        var result = await fetch(`https://word.connectors.talxis.com/api/WordToPDF?code=${apiKey}`, {
+        var result = await fetch(`${targeturl}?code=${apiKey}`, {
             method: 'POST',
             mode: 'cors',
             body: JSON.stringify({
@@ -80,13 +94,28 @@ async function Word2PdfProcess() {
     reader.readAsDataURL(file);
 }
 
- function parserOnchange() {
+ function parserOnchangeSolutionParser() {
      if(document.getElementById("solutionparser-target").value === "local") {
          document.getElementById("solutionparser-port").style.display = 'inline-block'
      } else {
          document.getElementById("solutionparser-port").style.display = 'none'
      }
  }
+
+ function parserOnchangeWordFiller() {
+    if(document.getElementById("wordfiller-target").value === "local") {
+        document.getElementById("wordfiller-port").style.display = 'inline-block'
+    } else {
+        document.getElementById("wordfiller-port").style.display = 'none'
+    }
+}
+function parserOnchangeWordToPDF() {
+    if(document.getElementById("wordtopdf-target").value === "local") {
+        document.getElementById("wordtopdf-port").style.display = 'inline-block'
+    } else {
+        document.getElementById("wordtopdf-port").style.display = 'none'
+    }
+}
 
 async function ParseSolution() {
 
@@ -99,12 +128,11 @@ async function ParseSolution() {
     }
 
     if(document.getElementById("solutionparser-target").value == "prod") {
-        targeturl = "https://pct20018-metadata.azurewebsites.net/api/parseSolution/";
+        targeturl = "https://metadata.services.talxis.com/api/parseSolution/";
     } else {
         targeturl = "http://localhost:" + document.getElementById("solutionparser-port-value").value + "/api/parseSolution/";
     }
 
-    debugger;
     var result = await fetch(targeturl + document.getElementById("solutionparser-option").value, {
         method: 'POST',
         mode: 'cors',

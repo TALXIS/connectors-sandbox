@@ -22,9 +22,12 @@
     <div id="tabs">
         <ul>
             <li><a href="#LiquidJS">LiquidJS</a></li>
-            <li><a href="#WordFiller">Word Filler</a></li>
+            <li><a href="#WordFiller">Word Template</a></li>
             <li><a href="#Word2PDF">Word to PDF</a></li>
-            <li><a href="#SolutionParser">Solution Parser</a></li>
+            <li><a href="#SolutionParser">Metadata Convertor</a></li>
+            <li tabindex="-1" style="position:absolute;right:15px;top:8px;">
+                <img src="https://docs.talxis.com/assets/img/talxis_logo.png" alt="Docs" height="30" />
+            </li>
         </ul>
         <div id="LiquidJS">
             <p>
@@ -42,8 +45,15 @@
             </p>
         </div>
         <div id="WordFiller">
+            <select name="wordfiller-target" id="wordfiller-target" onchange="parserOnchangeWordFiller()">
+                <option value="prod">word.connectors.talxis.com</option>
+                <option value="local">localhost</option>
+            </select>
+            <div id="wordfiller-port" style="display: none;">Port:<input type="text" id="wordfiller-port-value"
+                    maxlength="4" size="1" value="7071"></div>
+            </br>
             <p>
-            <h3>API key</h3>
+            <h3>API Key</h3>
             <input type="text" id="wordfiller-api">
             <h3>Source File</h3>
             <input type="file" id="wordfiller-file"
@@ -58,8 +68,15 @@
             </p>
         </div>
         <div id="Word2PDF">
+            <select name="wordtopdf-target" id="wordtopdf-target" onchange="parserOnchangeWordToPDF()">
+                <option value="prod">word.connectors.talxis.com</option>
+                <option value="local">localhost</option>
+            </select>
+            <div id="wordtopdf-port" style="display: none;">Port:<input type="text" id="wordtopdf-port-value"
+                    maxlength="4" size="1" value="7071"></div>
+            </br>
             <p>
-            <h3>API key</h3>
+            <h3>API Key</h3>
             <input type="text" id="word2pdf-api">
             <h3>Source File</h3>
             <input type="file" id="word2pdf-file"
@@ -70,15 +87,17 @@
             </p>
         </div>
         <div id="SolutionParser">
-            <select name="solutionparser-target" id="solutionparser-target" onchange="parserOnchange()">
-                <option value="prod">https://pct20018-metadata.azurewebsites.net</option>
+            <select name="solutionparser-target" id="solutionparser-target" onchange="parserOnchangeSolutionParser()">
+                <option value="prod">metadata.services.talxis.com</option>
                 <option value="local">localhost</option>
-            </select> <div id="solutionparser-port" style="display: none;">Port:<input type="text" id="solutionparser-port-value" maxlength="4" size="1" value="7071"></div>
+            </select>
+            <div id="solutionparser-port" style="display: none;">Port:<input type="text" id="solutionparser-port-value"
+                    maxlength="4" size="1" value="7071"></div>
             </br>
             <p>
             <h3>Source Files</h3>
             <input id="solutionparser-file" type="file" accept=".zip,.rar,.7zip" multiple></br>
-            <h3>Choose output:</h3>
+            <h3>Choose Output:</h3>
             <select name="solutionparser-option" id="solutionparser-option">
                 <option value="dbml">DBML</option>
                 <option value="sql">SQL</option>
