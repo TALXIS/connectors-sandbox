@@ -42,6 +42,11 @@
             </p>
         </div>
         <div id="WordFiller">
+            <select name="wordfiller-target" id="wordfiller-target" onchange="parserOnchangeWordFiller()">
+                <option value="prod">https://word.connectors.talxis.com</option>
+                <option value="local">localhost</option>
+            </select> <div id="wordfiller-port" style="display: none;">Port:<input type="text" id="wordfiller-port-value" maxlength="4" size="1" value="7071"></div>
+            </br>
             <p>
             <h3>API key</h3>
             <input type="text" id="wordfiller-api">
@@ -58,6 +63,11 @@
             </p>
         </div>
         <div id="Word2PDF">
+            <select name="wordtopdf-target" id="wordtopdf-target" onchange="parserOnchangeWordToPDF()">
+                <option value="prod">https://word.connectors.talxis.com</option>
+                <option value="local">localhost</option>
+            </select> <div id="wordtopdf-port" style="display: none;">Port:<input type="text" id="wordtopdf-port-value" maxlength="4" size="1" value="7071"></div>
+            </br>
             <p>
             <h3>API key</h3>
             <input type="text" id="word2pdf-api">
@@ -70,7 +80,7 @@
             </p>
         </div>
         <div id="SolutionParser">
-            <select name="solutionparser-target" id="solutionparser-target" onchange="parserOnchange()">
+            <select name="solutionparser-target" id="solutionparser-target" onchange="parserOnchangeSolutionParser()">
                 <option value="prod">https://pct20018-metadata.azurewebsites.net</option>
                 <option value="local">localhost</option>
             </select> <div id="solutionparser-port" style="display: none;">Port:<input type="text" id="solutionparser-port-value" maxlength="4" size="1" value="7071"></div>
