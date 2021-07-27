@@ -128,7 +128,7 @@ async function ParseSolution() {
     }
 
     if(document.getElementById("solutionparser-target").value == "prod") {
-        targeturl = "https://pct20018-metadata.azurewebsites.net/api/parseSolution/";
+        targeturl = "https://metadata.services.talxis.com/api/parseSolution/";
     } else {
         targeturl = "http://localhost:" + document.getElementById("solutionparser-port-value").value + "/api/parseSolution/";
     }
