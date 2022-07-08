@@ -94,6 +94,17 @@ async function Word2PdfProcess() {
     reader.readAsDataURL(file);
 }
 
+function datafeedOnChangeTarget() {
+    if(document.getElementById("datafeed-target").value === "local") {
+        document.getElementById("datafeed-port").style.display = 'inline-block'
+        document.getElementById("datafeed-frame").setAttribute("src", "https://localhost:5001/index.html");
+    } else {
+        document.getElementById("datafeed-port").style.display = 'none'
+        document.getElementById("datafeed-frame").setAttribute("src", "https://datafeed.connectors.talxis.com/index.html");
+    }
+}
+datafeedOnChangeTarget(); // call it for the first time
+
  function parserOnchangeSolutionParser() {
      if(document.getElementById("solutionparser-target").value === "local") {
          document.getElementById("solutionparser-port").style.display = 'inline-block'
@@ -106,9 +117,10 @@ async function Word2PdfProcess() {
     if(document.getElementById("wordfiller-target").value === "local") {
         document.getElementById("wordfiller-port").style.display = 'inline-block'
     } else {
-        document.getElementById("wordfiller-port").style.display = 'none'
+        document.getElementById("wordfiller-port").style.display = 'none'  
     }
 }
+
 function parserOnchangeWordToPDF() {
     if(document.getElementById("wordtopdf-target").value === "local") {
         document.getElementById("wordtopdf-port").style.display = 'inline-block'
